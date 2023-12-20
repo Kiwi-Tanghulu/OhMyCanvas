@@ -1,0 +1,75 @@
+<mxfile host="65bd71144e">
+    <diagram id="-_xoLNnm_bR5iiauwjqA" name="페이지-1">
+        <mxGraphModel dx="911" dy="662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="41" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;" edge="1" parent="1" source="3" target="40">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="로비 입장" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="134" y="110" width="126" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;" edge="1" parent="1" source="5" target="24">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="주제 선정" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="134" y="397.25" width="126" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=3;" edge="1" parent="1" source="24" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="미니게임" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="134" y="516.25" width="126" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=3;" edge="1" parent="1" source="26" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="결과에 따른 &lt;br&gt;물감 배부" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="340" y="516.25" width="126" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=3;" edge="1" parent="1" source="27" target="37">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=3;" edge="1" parent="1" source="27">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="200" y="478" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="593" y="478"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="그림 그리기" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="530" y="516.25" width="126" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="3 ~ 4회 반복" style="text;html=1;strokeColor=#E6E6E6;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="360" y="449.25" width="100" height="28.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=3;" edge="1" parent="1" source="37" target="3">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="780" y="136"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="그림 평가" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="714" y="516.25" width="126" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;" edge="1" parent="1" source="40" target="44">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="197" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="40" value="방 생성 or 참가" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="134" y="210" width="126" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=3;" edge="1" parent="1" source="44" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="게임 시작" style="rounded=1;whiteSpace=wrap;html=1;fontColor=#E6E6E6;fillColor=none;strokeColor=#E6E6E6;strokeWidth=3;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="134" y="306" width="126" height="52" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
