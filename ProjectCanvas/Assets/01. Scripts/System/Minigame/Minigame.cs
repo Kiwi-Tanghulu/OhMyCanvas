@@ -1,22 +1,25 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public abstract class Minigame<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class Minigame : MonoBehaviour
 {
-    private Dictionary<ulong, MinigameUser<T>> users;
+    private Dictionary<ulong, MinigameUser> users;
 
 	public abstract void StartGame();
-    public abstract void StopGame();
+    public abstract void CloseGame();
 
-    public void RegisterUser(ulong id, T user)
+    public void RegisterUser(NetworkObject user)
     {
-        if(users.ContainsKey(id) == false)
-            users.Add(id, new MinigameUser<T>(user));
+        if(users.ContainsKey(user.NetworkObjectId) == false)
+            users.Add(user.NetworkObjectId, new MinigameUser(user));
     }
 
-    public Dictionary<ulong, MinigameUser<T>> GetUserList() => users;
+    public void RegisterUsers(List<NetworkObject> users) => users.ForEach(RegisterUser);
 
-    public MinigameUser<T> GetUser(ulong id)
+    public Dictionary<ulong, MinigameUser> GetUserList() => users;
+
+    public MinigameUser GetUser(ulong id)
     {
         if(users.ContainsKey(id) == false)
             return null;

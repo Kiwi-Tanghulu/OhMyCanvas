@@ -1,11 +1,12 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class MinigameUser<T> where T : MonoBehaviour
+public class MinigameUser
 {
-    public T Player { get; private set; }
+    public NetworkObject Player { get; private set; }
     public int Score { get; private set; }
 
-    public MinigameUser(T player)
+    public MinigameUser(NetworkObject player)
     {
         this.Player = player;
     }
