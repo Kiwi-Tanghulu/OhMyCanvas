@@ -35,5 +35,6 @@ public class InputReader : ScriptableObject, IPlayActions
         Vector2 inputValue = context.ReadValue<Vector2>();
 
         Move_Input?.Invoke(inputValue);
+        Debug.Log(inputValue);
     }
 }
