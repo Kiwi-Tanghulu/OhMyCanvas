@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerController : NetworkBehaviour
 {
     private Dictionary<PlayerStateType, PlayerState> states;
+    [field: SerializeField]
     public PlayerStateType CurrentState { get; private set; }
     public PlayerMovement Movement { get; private set; }
     public PlayerAnimation Anim { get; private set; }
@@ -38,6 +39,9 @@ public class PlayerController : NetworkBehaviour
     #region ChangeState
     public void ChangeState(PlayerStateType type)
     {
+        if (!IsOwner)
+            return;
+
         ChangeStateServerRpc(type);
     }
 
@@ -50,7 +54,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     private void ChangeStateClientRpc(PlayerStateType type)
     {
-        if(states.TryGetValue(type, out PlayerState state))
+        if (states.TryGetValue(type, out PlayerState state))
         {
             if (state == null)
                 return;

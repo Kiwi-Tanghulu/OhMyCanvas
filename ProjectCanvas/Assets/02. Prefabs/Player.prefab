@@ -416,6 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1eef52c21ae574ebc85500ee9e1524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CurrentState>k__BackingField: 0
   <InputReader>k__BackingField: {fileID: 11400000, guid: 58401ac203fa9a24e9cf83535720108a,
     type: 2}
 --- !u!114 &4680689391393320405
@@ -2190,7 +2191,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   checkSize: {x: 0.4, y: 0.1, z: 0.4}
-  checkOffset: {x: 0, y: 0.05, z: 0.1}
+  checkOffset: {x: 0, y: 0, z: 0.1}
 --- !u!1 &8446389957830707049
 GameObject:
   m_ObjectHideFlags: 0

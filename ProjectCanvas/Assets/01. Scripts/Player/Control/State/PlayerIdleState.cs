@@ -6,22 +6,22 @@ public class PlayerIdleState : PlayerState
 {
     public override void EnterState()
     {
-        controller.InputReader.Move_Input += MoveHandle;
+        controller.Movement.SetMoveDir(Vector2.zero);
     }
 
     public override void ExitState()
     {
-        controller.InputReader.Move_Input -= MoveHandle;
+
     }
 
     public override void UpdateState()
     {
-
+        MoveHandle();
     }
 
-    private void MoveHandle(Vector2 input)
+    private void MoveHandle()
     {
-        if (input != Vector2.zero)
+        if (controller.InputReader.MoveInputValue != Vector2.zero)
             controller.ChangeState(PlayerStateType.Move);
     }
 }
