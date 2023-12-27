@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 4680689391393320405}
   - component: {fileID: 2086718656815445029}
   - component: {fileID: -3720612594804140469}
-  - component: {fileID: 1942344215772880168}
+  - component: {fileID: 5737551224674101649}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -351,6 +351,7 @@ Transform:
   m_Children:
   - {fileID: 7269523545465942321}
   - {fileID: 2260455536679386127}
+  - {fileID: 3453202090173724910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4156813902695767108
@@ -429,8 +430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2db6f80b88bfe4083ec164cb160d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundChecker: {fileID: 7661105860528545987}
   moveSpeed: 5
   rotateSpeed: 50
+  applyGravity: 1
 --- !u!114 &2086718656815445029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,8 +460,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
   ragdollObj: {fileID: 0}
---- !u!143 &1942344215772880168
-CharacterController:
+--- !u!136 &5737551224674101649
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -475,14 +478,11 @@ CharacterController:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.5, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &1016737204383957069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2142,55 @@ Transform:
   - {fileID: 847099183081257919}
   m_Father: {fileID: 1509894077805123094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8131954703455724128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3453202090173724910}
+  - component: {fileID: 7661105860528545987}
+  m_Layer: 0
+  m_Name: GroundChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3453202090173724910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131954703455724128}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2189224441328569397}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7661105860528545987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131954703455724128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976912e7fecb4224cbbe4fdc2f20d10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  checkSize: {x: 0.4, y: 0.1, z: 0.4}
+  checkOffset: {x: 0, y: 0.05, z: 0.1}
 --- !u!1 &8446389957830707049
 GameObject:
   m_ObjectHideFlags: 0
