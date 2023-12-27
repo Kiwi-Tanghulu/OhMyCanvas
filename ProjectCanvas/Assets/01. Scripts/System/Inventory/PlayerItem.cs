@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public abstract class PlayerItem : MonoBehaviour, IOperable
 {
     [SerializeField] UnityEvent<bool> OnActivedEvent;
+    [field : SerializeField] public PlayerItemDataSO itemData;
 
     /// <summary>
     /// actions to be performed when an item just activated
