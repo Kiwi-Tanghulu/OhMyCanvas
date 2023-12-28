@@ -7,19 +7,13 @@ using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
 {
+    [SerializeField] private GroundChecker groundChecker;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = 50f;
     [SerializeField] private bool applyGravity = true;
     private Vector2 moveDir;
     private float verticalVelocity;
     private float gravityScale = -9.81f;
-
-    private CharacterController cc;
-
-    private void Awake()
-    {
-        cc = GetComponent<CharacterController>();
-    }
 
     private void Update()
     {
@@ -36,11 +30,6 @@ public class PlayerMovement : NetworkBehaviour
         moveDir = dir;  
     }
 
-    public bool IsGround()
-    {
-        return cc.isGrounded;
-    }
-
     private void Move()
     {
         Vector3 moveVector = new Vector3(
@@ -48,7 +37,7 @@ public class PlayerMovement : NetworkBehaviour
             verticalVelocity,
             moveDir.y * moveSpeed) * Time.deltaTime;
 
-        cc.Move(moveVector);
+        transform.Translate(moveVector);
     }
 
     private void Rotate()
@@ -61,14 +50,13 @@ public class PlayerMovement : NetworkBehaviour
         if(!applyGravity) 
             return;
 
-        if(IsGround())
+        if(groundChecker.IsGround())
         {
             verticalVelocity = 0f;
-            verticalVelocity -= gravityScale * 0.3f * Time.deltaTime;
         }
         else
         {
-            verticalVelocity -= gravityScale * Time.deltaTime;
+            verticalVelocity += gravityScale * Time.deltaTime;
         }
     }
 }

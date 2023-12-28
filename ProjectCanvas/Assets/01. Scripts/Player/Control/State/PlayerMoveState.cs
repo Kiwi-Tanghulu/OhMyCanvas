@@ -7,25 +7,24 @@ public class PlayerMoveState : PlayerState
 {
     public override void EnterState()
     {
-        controller.InputReader.Move_Input += IdleHandle;
-        controller.InputReader.Move_Input += controller.Movement.SetMoveDir;
+        controller.Anim.SetAnimBoolProperty(StateType.ToString(), true);
     }
 
     public override void ExitState()
     {
-        controller.InputReader.Move_Input -= IdleHandle;
-        controller.InputReader.Move_Input -= controller.Movement.SetMoveDir;
         controller.Movement.SetMoveDir(Vector2.zero);
+        controller.Anim.SetAnimBoolProperty(StateType.ToString(), false);
     }
 
     public override void UpdateState()
     {
-
+        IdleHandle();
+        controller.Movement.SetMoveDir(controller.InputReader.MoveInputValue);
     }
 
-    private void IdleHandle(Vector2 input)
+    private void IdleHandle()
     {
-        if (input == Vector2.zero)
+        if (controller.InputReader.MoveInputValue == Vector2.zero)
             controller.ChangeState(PlayerStateType.Idle);
     }
 }

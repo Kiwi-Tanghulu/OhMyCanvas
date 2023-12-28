@@ -10,8 +10,9 @@ public class InputReader : ScriptableObject, IPlayActions
 {
     private PlayerInput input;
 
-    public event Action<Vector2> Move_Input;
     public event Action F_Input;
+
+    public Vector2 MoveInputValue { get; private set; }
 
     private void OnEnable()
     {
@@ -32,9 +33,6 @@ public class InputReader : ScriptableObject, IPlayActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 inputValue = context.ReadValue<Vector2>();
-
-        Move_Input?.Invoke(inputValue);
-        Debug.Log(inputValue);
+        MoveInputValue = context.ReadValue<Vector2>();
     }
 }
