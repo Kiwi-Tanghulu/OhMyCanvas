@@ -14,7 +14,6 @@ public class PlayerAnimation : MonoBehaviour
     private void Awake()
     {
         anim = transform.Find("Visual").GetComponent<Animator>();
-        Debug.Log(anim.transform);
     }
 
     public void SetTriggerProperty(string propertyName)
