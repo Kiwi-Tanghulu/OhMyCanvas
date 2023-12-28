@@ -22,7 +22,6 @@ public class GroundChecker : MonoBehaviour
         
         Physics.OverlapBoxNonAlloc(transform.position + checkOffset,
             checkOffset * 0.5f, result, Quaternion.identity, groundLayer);
-        Debug.Log(result[0]);
 
         return result[0] != null;
     }
