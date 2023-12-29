@@ -13,6 +13,7 @@ public class InputReader : ScriptableObject, IPlayActions
     public event Action F_Input;
 
     public Vector2 MoveInputValue { get; private set; }
+    public Vector2 MouseDeltaValue { get; private set; }
 
     private void OnEnable()
     {
@@ -34,5 +35,10 @@ public class InputReader : ScriptableObject, IPlayActions
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveInputValue = context.ReadValue<Vector2>();
+    }
+
+    public void OnMouseMove(InputAction.CallbackContext context)
+    {
+        MouseDeltaValue = context.ReadValue<Vector2>();
     }
 }
