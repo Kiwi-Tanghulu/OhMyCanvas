@@ -29,7 +29,7 @@ public class PlayerView : PlayerComponent
     public override void UpdateCompo()
     {
         base.UpdateCompo();
-
+       
         RotateCamera();
     }
 
@@ -37,11 +37,14 @@ public class PlayerView : PlayerComponent
     {
         mouseDelta = inputReader.MouseDeltaValue * moveSpeed;
 
+        //회전값 구하기 
         currentRotation.x += ReverseX ? mouseDelta.y : -mouseDelta.y;
         currentRotation.y += ReverseY ? mouseDelta.x : -mouseDelta.x;
 
+        //360도 회전하지 않도록 회전값 제한
         currentRotation.x = Mathf.Clamp(currentRotation.x, ClampRotateValue.x, ClampRotateValue.y);
 
+        //회전
         camParent.rotation = Quaternion.Euler(currentRotation);
     }
 }

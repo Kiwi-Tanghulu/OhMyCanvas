@@ -48,9 +48,10 @@ public class PlayerMovement : PlayerComponent
         if (moveDir == Vector3.zero)
             return;
 
-        Quaternion target = Quaternion.Euler(0f, Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg, 0f);
+        float angle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0f, angle, 0f);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime * rotateSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
     }
 
     private void Gravity()
