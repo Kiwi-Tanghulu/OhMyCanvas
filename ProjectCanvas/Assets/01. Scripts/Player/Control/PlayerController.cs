@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerController : NetworkBehaviour
+public class PlayerController : NetworkBehaviour, IDamageable
 {
     private Dictionary<PlayerStateType, PlayerState> states;
     [field: SerializeField]
@@ -13,6 +13,7 @@ public class PlayerController : NetworkBehaviour
     public PlayerAnimation Anim { get; private set; }
     public PlayerRagdoll Ragdoll { get; private set; }
     public PlayerView View { get; private set; }
+    public PlayerAttack Attack { get; private set; }
     [field:SerializeField]
     public InputReader InputReader { get; private set; }
 
@@ -20,14 +21,17 @@ public class PlayerController : NetworkBehaviour
     {
         states = new();
         Movement = GetComponent<PlayerMovement>();
-        Anim = GetComponent<PlayerAnimation>();
+        Anim = transform.Find("Visual").GetComponent<PlayerAnimation>();
         Ragdoll = GetComponent<PlayerRagdoll>();
         View = GetComponent<PlayerView>();
+        Attack = GetComponent<PlayerAttack>();
 
         Movement.InitCompo(this);
         Anim.InitCompo(this);
         Ragdoll.InitCompo(this);
         View.InitCompo(this);
+        Attack.InitCompo(this);
+
         InitState();
     }
 
@@ -37,12 +41,14 @@ public class PlayerController : NetworkBehaviour
         Anim.UpdateCompo();
         Ragdoll.UpdateCompo();
         View.UpdateCompo();
+        Attack.UpdateCompo();
         states[CurrentState].UpdateState();
     }
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+
         ChangeState(PlayerStateType.Idle);
     }
 
@@ -95,5 +101,11 @@ public class PlayerController : NetworkBehaviour
             state.InitState(this, type);
             states.Add(type, state);
         }
+    }
+
+    public void OnDamaged(int damage = 0, GameObject performer = null, Vector3 point = default)
+    {
+        Debug.Log(gameObject.name);
+        ChangeStateClientRpc(PlayerStateType.Stun);
     }
 }

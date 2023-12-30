@@ -53,6 +53,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce00acb2-5f8d-4f05-a8f1-3a20e8b45ae5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""MouseMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95108f98-e4ea-4236-b67d-08dbc4bd91d0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -160,6 +180,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Play_Move = m_Play.FindAction("Move", throwIfNotFound: true);
         m_Play_Interact = m_Play.FindAction("Interact", throwIfNotFound: true);
         m_Play_MouseMove = m_Play.FindAction("MouseMove", throwIfNotFound: true);
+        m_Play_LClick = m_Play.FindAction("LClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -224,6 +245,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Play_Move;
     private readonly InputAction m_Play_Interact;
     private readonly InputAction m_Play_MouseMove;
+    private readonly InputAction m_Play_LClick;
     public struct PlayActions
     {
         private @PlayerInput m_Wrapper;
@@ -231,6 +253,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Play_Move;
         public InputAction @Interact => m_Wrapper.m_Play_Interact;
         public InputAction @MouseMove => m_Wrapper.m_Play_MouseMove;
+        public InputAction @LClick => m_Wrapper.m_Play_LClick;
         public InputActionMap Get() { return m_Wrapper.m_Play; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -249,6 +272,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MouseMove.started += instance.OnMouseMove;
             @MouseMove.performed += instance.OnMouseMove;
             @MouseMove.canceled += instance.OnMouseMove;
+            @LClick.started += instance.OnLClick;
+            @LClick.performed += instance.OnLClick;
+            @LClick.canceled += instance.OnLClick;
         }
 
         private void UnregisterCallbacks(IPlayActions instance)
@@ -262,6 +288,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MouseMove.started -= instance.OnMouseMove;
             @MouseMove.performed -= instance.OnMouseMove;
             @MouseMove.canceled -= instance.OnMouseMove;
+            @LClick.started -= instance.OnLClick;
+            @LClick.performed -= instance.OnLClick;
+            @LClick.canceled -= instance.OnLClick;
         }
 
         public void RemoveCallbacks(IPlayActions instance)
@@ -293,5 +322,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMouseMove(InputAction.CallbackContext context);
+        void OnLClick(InputAction.CallbackContext context);
     }
 }

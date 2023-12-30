@@ -7,13 +7,13 @@ public class PlayerAnimation : PlayerComponent
 {
     private Animator anim;
 
-    public Action AnimStartEvent;
-    public Action OnAnimEvent;
-    public Action AnimEndEvent;
+    public event Action AnimStartEvent;
+    public event Action OnAnimEvent;
+    public event Action AnimEndEvent;
 
     public override void InitCompo(PlayerController controller)
     {
-        anim = transform.Find("Visual").GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     public void SetTriggerProperty(string propertyName)
@@ -24,6 +24,31 @@ public class PlayerAnimation : PlayerComponent
     public void SetAnimBoolProperty(string propertyName, bool value)
     {
         anim.SetBool(propertyName, value);
+    }
+
+    public void SetLayerWeight(string layerName, float target)
+    {
+        anim.SetLayerWeight(anim.GetLayerIndex(layerName), target);
+    }
+    public void SetLayerWeight(string layerName, float start, float end, float time = 0)
+    {
+        StartCoroutine(SetLayerWeightCo(layerName, start, end, time));
+    }
+
+    private IEnumerator SetLayerWeightCo(string layerName, float start, float end, float time)
+    {
+        float percent = 0;
+        float value;
+
+        while (percent < 1f)
+        {
+            percent += Time.deltaTime / time;
+            value = Mathf.Lerp(start, end, percent);
+
+            anim.SetLayerWeight(anim.GetLayerIndex(layerName), value);
+
+            yield return null;
+        }
     }
 
     public void InvokeAnimStartEvent() => AnimStartEvent?.Invoke();
