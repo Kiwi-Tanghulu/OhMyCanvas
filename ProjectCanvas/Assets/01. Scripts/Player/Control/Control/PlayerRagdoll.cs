@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRagdoll : MonoBehaviour
+public class PlayerRagdoll : PlayerComponent
 {
     [SerializeField] private GameObject playerObj;
     [SerializeField] private GameObject ragdollObj;

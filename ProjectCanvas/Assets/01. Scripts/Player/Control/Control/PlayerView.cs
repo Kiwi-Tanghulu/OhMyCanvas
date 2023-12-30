@@ -1,11 +1,13 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerView : MonoBehaviour
+public class PlayerView : PlayerComponent
 {
     [SerializeField] private InputReader inputReader;
     [SerializeField] private Transform camParent;
+    [SerializeField] private CinemachineVirtualCamera cam;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Vector2 ClampRotateValue;
     [SerializeField] private bool ReverseX;
@@ -14,8 +16,20 @@ public class PlayerView : MonoBehaviour
     private Vector2 currentRotation = Vector2.zero;
     private Vector2 mouseDelta;
 
-    private void Update()
+    public Quaternion ForwardRotation => Quaternion.Euler(0f, currentRotation.y, 0f);
+
+    public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
+        if (!IsOwner)
+            cam.Priority = 0;
+    }
+
+    public override void UpdateCompo()
+    {
+        base.UpdateCompo();
+
         RotateCamera();
     }
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour
+public class PlayerAnimation : PlayerComponent
 {
     private Animator anim;
 
@@ -11,7 +11,7 @@ public class PlayerAnimation : MonoBehaviour
     public Action OnAnimEvent;
     public Action AnimEndEvent;
 
-    private void Awake()
+    public override void InitCompo(PlayerController controller)
     {
         anim = transform.Find("Visual").GetComponent<Animator>();
     }

@@ -12,6 +12,7 @@ public class PlayerController : NetworkBehaviour
     public PlayerMovement Movement { get; private set; }
     public PlayerAnimation Anim { get; private set; }
     public PlayerRagdoll Ragdoll { get; private set; }
+    public PlayerView View { get; private set; }
     [field:SerializeField]
     public InputReader InputReader { get; private set; }
 
@@ -21,12 +22,21 @@ public class PlayerController : NetworkBehaviour
         Movement = GetComponent<PlayerMovement>();
         Anim = GetComponent<PlayerAnimation>();
         Ragdoll = GetComponent<PlayerRagdoll>();
+        View = GetComponent<PlayerView>();
 
+        Movement.InitCompo(this);
+        Anim.InitCompo(this);
+        Ragdoll.InitCompo(this);
+        View.InitCompo(this);
         InitState();
     }
 
     private void Update()
     {
+        Movement.UpdateCompo();
+        Anim.UpdateCompo();
+        Ragdoll.UpdateCompo();
+        View.UpdateCompo();
         states[CurrentState].UpdateState();
     }
 

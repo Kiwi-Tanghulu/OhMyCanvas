@@ -321,7 +321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 657937839464493789}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.17688344, y: -0.0000000066085617, z: 0.000000005508336,
+  m_LocalRotation: {x: -0.17688344, y: -0.0000000066085626, z: 0.000000005508337,
     w: 0.9842319}
   m_LocalPosition: {x: 0, y: -1.55, z: -6.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 8039134539631217818}
   - component: {fileID: 4730301341882807283}
   - component: {fileID: 1239533043804823591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundChecker: {fileID: 1185609377914548824}
   moveSpeed: 5
-  rotateSpeed: 50
+  rotateSpeed: 10
   applyGravity: 1
 --- !u!114 &6573636045163595754
 MonoBehaviour:
@@ -636,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 58401ac203fa9a24e9cf83535720108a, type: 2}
   camParent: {fileID: 6222561276928377550}
+  cam: {fileID: 4064560107777125736}
   moveSpeed: 0.3
   ClampRotateValue: {x: -10, y: 80}
   ReverseX: 0

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
@@ -5,20 +6,22 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement : PlayerComponent
 {
     [SerializeField] private GroundChecker groundChecker;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float rotateSpeed = 50f;
+    [SerializeField] private float rotateSpeed = 5f;
     [SerializeField] private bool applyGravity = true;
-    private Vector2 moveDir;
+
+    private Vector3 moveDir;
     private float verticalVelocity;
     private float gravityScale = -9.81f;
 
-    private void Update()
+    private Tween rotateTween;
+
+    public override void UpdateCompo()
     {
-        if (!IsOwner)
-            return;
+        base.UpdateCompo();
 
         Gravity();
         Move();
@@ -27,7 +30,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public void SetMoveDir(Vector2 dir)
     {
-        moveDir = dir;  
+        moveDir = (controller.View.ForwardRotation * new Vector3(dir.x, 0f, dir.y)).normalized; 
     }
 
     private void Move()
@@ -35,14 +38,19 @@ public class PlayerMovement : NetworkBehaviour
         Vector3 moveVector = new Vector3(
             moveDir.x * moveSpeed,
             verticalVelocity,
-            moveDir.y * moveSpeed) * Time.deltaTime;
+            moveDir.z * moveSpeed) * Time.deltaTime;
 
-        transform.Translate(moveVector);
+        transform.position += moveVector;
     }
 
     private void Rotate()
     {
+        if (moveDir == Vector3.zero)
+            return;
 
+        Quaternion target = Quaternion.Euler(0f, Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg, 0f);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime * rotateSpeed);
     }
 
     private void Gravity()
@@ -59,4 +67,12 @@ public class PlayerMovement : NetworkBehaviour
             verticalVelocity += gravityScale * Time.deltaTime;
         }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + moveDir * 5f);
+    }
+#endif
 }
