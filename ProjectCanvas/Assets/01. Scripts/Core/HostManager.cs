@@ -16,7 +16,7 @@ public class HostManager
     private Allocation allocation;
     private string joinCode;
 
-    private const int MaxConnection = 2;
+    private const int MaxConnection = 8;
     
     public async Task CreateRoomAsync()
     {
