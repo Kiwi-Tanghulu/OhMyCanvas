@@ -22,13 +22,15 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        SceneLoader.Instance = new SceneLoader();
     }
 
     private async void Start()
     {
         bool authenticated = await SetNetwork();
         if(authenticated)
-            Debug.Log("Change Scene");
+            SceneLoader.Instance.LoadSceneAsync("MenuScene");
     }
 
     private async Task<bool> SetNetwork()

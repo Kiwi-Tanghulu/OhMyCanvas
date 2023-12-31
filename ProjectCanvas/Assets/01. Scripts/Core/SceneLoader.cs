@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader
 {
     public static SceneLoader Instance = null;
 
@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadSceneAsync(string sceneName, Action onCompleted = null)
     {
         AsyncOperation asyncOper = SceneManager.LoadSceneAsync(sceneName);
-        StartCoroutine(AsyncLoadCoroutine(asyncOper, onCompleted));
+        GameManager.Instance.StartCoroutine(AsyncLoadCoroutine(asyncOper, onCompleted));
     }
 
     private IEnumerator AsyncLoadCoroutine(AsyncOperation asyncOper, Action onCompleted)

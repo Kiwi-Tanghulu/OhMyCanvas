@@ -28,7 +28,7 @@ public static class Authenticator
     private static async Task SignInAnnonymouslyAsync(int retries)
     {
         int tries = 0;
-        while(AuthState == AuthState.Authenticating && tries > retries)
+        while(AuthState == AuthState.Authenticating && tries < retries)
         {
             try
             {
@@ -44,7 +44,6 @@ public static class Authenticator
             {
                 AuthState = AuthState.Error;
             }
-
             tries++;
             await Task.Delay(1000);
         }
