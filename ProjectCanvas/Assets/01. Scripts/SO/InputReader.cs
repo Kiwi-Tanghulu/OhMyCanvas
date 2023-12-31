@@ -10,8 +10,11 @@ public class InputReader : ScriptableObject, IPlayActions
 {
     private PlayerInput input;
 
-    public event Action<Vector2> Move_Input;
-    public event Action F_Input;
+    public event Action F_Event;
+    public event Action LClick_Event;
+
+    public Vector2 MoveInputValue { get; private set; }
+    public Vector2 MouseDeltaValue { get; private set; }
 
     private void OnEnable()
     {
@@ -27,14 +30,22 @@ public class InputReader : ScriptableObject, IPlayActions
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
-            F_Input?.Invoke();
+            F_Event?.Invoke();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 inputValue = context.ReadValue<Vector2>();
+        MoveInputValue = context.ReadValue<Vector2>();
+    }
 
-        Move_Input?.Invoke(inputValue);
-        Debug.Log(inputValue);
+    public void OnMouseMove(InputAction.CallbackContext context)
+    {
+        MouseDeltaValue = context.ReadValue<Vector2>();
+    }
+
+    public void OnLClick(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            LClick_Event?.Invoke();
     }
 }

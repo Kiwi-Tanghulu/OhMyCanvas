@@ -6,7 +6,7 @@ public class PlayerStunState : PlayerState
 {
     public override void EnterState()
     {
-
+        Debug.Log("stun");
     }
 
     public override void ExitState()
