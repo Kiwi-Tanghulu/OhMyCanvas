@@ -11,7 +11,7 @@ public class HostManager
 {
 	public static HostManager Instance = null;
 
-    public event Action OnHostCreatedEvent;
+    public event Action OnRoomCreatedEvent;
 
     private Allocation allocation;
     private string joinCode;
@@ -46,7 +46,6 @@ public class HostManager
         RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
         transport.SetRelayServerData(relayServerData);
 
-        NetworkManager.Singleton.StartHost();
-        OnHostCreatedEvent?.Invoke();
+        OnRoomCreatedEvent?.Invoke();
     }
 }
