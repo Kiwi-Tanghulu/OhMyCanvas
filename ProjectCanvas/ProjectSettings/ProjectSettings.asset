@@ -913,11 +913,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 3b78ae8d-2ab1-4f1a-8ce4-0fbfa0a0b816
+  cloudProjectId: 0a7dd32d-c254-4ac8-bdbd-8363e4690074
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: ProjectCanvas
-  organizationId: unity_06psh0501
+  projectName: ProjectCanvas (1)
+  organizationId: dlawnstjd
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
