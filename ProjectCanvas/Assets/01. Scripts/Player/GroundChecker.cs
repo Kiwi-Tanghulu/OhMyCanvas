@@ -26,11 +26,11 @@ public class GroundChecker : MonoBehaviour
         return result[0] != null;
     }
 
-//#if UNITY_EDITOR
-//    private void OnDrawGizmos()
-//    {
-//        Gizmos.color = Color.red;
-//        Gizmos.DrawWireCube(transform.position + checkOffset, checkSize);
-//    }
-//#endif
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + checkOffset, checkSize);
+    }
+#endif
 }

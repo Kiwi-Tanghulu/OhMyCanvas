@@ -1,9 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Json;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : PlayerComponent
@@ -18,6 +16,14 @@ public class PlayerMovement : PlayerComponent
     private float gravityScale = -9.81f;
 
     private Tween rotateTween;
+    private CharacterController cc;
+
+    public override void InitCompo(PlayerController controller)
+    {
+        base.InitCompo(controller);
+
+        cc = GetComponent<CharacterController>();
+    }
 
     public override void UpdateCompo()
     {
@@ -40,7 +46,7 @@ public class PlayerMovement : PlayerComponent
             verticalVelocity,
             moveDir.z * moveSpeed) * Time.deltaTime;
 
-        transform.position += moveVector;
+        cc.Move(moveVector);
     }
 
     private void Rotate()
@@ -59,9 +65,9 @@ public class PlayerMovement : PlayerComponent
         if(!applyGravity) 
             return;
 
-        if(groundChecker.IsGround())
+        if(cc.isGrounded)
         {
-            verticalVelocity = 0f;
+            verticalVelocity = gravityScale * 0.3f * Time.deltaTime;
         }
         else
         {

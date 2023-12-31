@@ -67,11 +67,11 @@ public class PlayerAttack : PlayerComponent
         }
     }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + transform.forward * attackOffset, attackRange * 0.5f);
-    }
-#endif
+//#if UNITY_EDITOR
+//    private void OnDrawGizmos()
+//    {
+//        Gizmos.color = Color.red;
+//        Gizmos.DrawWireSphere(transform.position + transform.forward * attackOffset, attackRange * 0.5f);
+//    }
+//#endif
 }
