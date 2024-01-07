@@ -38,6 +38,9 @@ public class PlayerController : NetworkBehaviour, IDamageable
 
     private void Update()
     {
+        if (!IsOwner)
+            return;
+
         Movement.UpdateCompo();
         Anim.UpdateCompo();
         Ragdoll.UpdateCompo();

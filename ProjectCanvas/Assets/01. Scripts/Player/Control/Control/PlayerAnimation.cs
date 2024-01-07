@@ -16,12 +16,12 @@ public class PlayerAnimation : PlayerComponent
         anim = GetComponent<Animator>();
     }
 
-    public void SetTriggerProperty(string propertyName)
+    public void SetTrigger(string propertyName)
     {
         anim.SetTrigger(propertyName);
     }
 
-    public void SetAnimBoolProperty(string propertyName, bool value)
+    public void SetBool(string propertyName, bool value)
     {
         anim.SetBool(propertyName, value);
     }

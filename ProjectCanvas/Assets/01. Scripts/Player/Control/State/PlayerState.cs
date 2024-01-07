@@ -12,24 +12,9 @@ public abstract class PlayerState : NetworkBehaviour
     {
         controller = _controller;
         StateType = type;
-
-        if (!IsOwner)
-            return;
     }
 
-    public virtual void EnterState()
-    {
-        if (!IsOwner)
-            return;
-    }
-    public virtual void UpdateState()
-    {
-        if (!IsOwner)
-            return;
-    }
-    public virtual void ExitState()
-    {
-        if (!IsOwner)
-            return;
-    }
+    public abstract void EnterState();
+    public abstract void UpdateState();
+    public abstract void ExitState();
 }

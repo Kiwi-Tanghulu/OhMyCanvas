@@ -4,25 +4,45 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerState
 {
+    private PlayerMovement movement;
+    private InputReader inputReader;
+
+    public override void InitState(PlayerController _controller, PlayerStateType type)
+    {
+        base.InitState(_controller, type);
+
+        movement = controller.Movement;
+        inputReader = controller.InputReader;
+    }
+
     public override void EnterState()
     {
-        controller.Movement.SetMoveDir(Vector2.zero);
-        controller.InputReader.LClick_Event += AttackHandle;
+        if (IsOwner)
+        {
+            movement.SetMoveDir(Vector2.zero);
+            inputReader.LClick_Event += AttackHandle;
+        }
     }
 
     public override void ExitState()
     {
-        controller.InputReader.LClick_Event -= AttackHandle;
+        if (IsOwner)
+        {
+            inputReader.LClick_Event -= AttackHandle;
+        }
     }
 
     public override void UpdateState()
     {
-        MoveHandle();
+        if (IsOwner)
+        {
+            MoveHandle();
+        }
     }
 
     private void MoveHandle()
     {
-        if (controller.InputReader.MoveInputValue != Vector2.zero)
+        if (inputReader.MoveInputValue != Vector2.zero)
             controller.ChangeState(PlayerStateType.Move);
     }
 

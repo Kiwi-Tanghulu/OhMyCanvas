@@ -2341,6 +2341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a572da1fff43a42b8c33be2b417e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StunTime: 3
 --- !u!1 &5352291961148187807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4345,6 +4346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6605167870929458654}
   - component: {fileID: 3506368696630857548}
+  - component: {fileID: 1175925865774530922}
   - component: {fileID: 1130941789584220573}
   m_Layer: 0
   m_Name: Visual
@@ -4395,6 +4397,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1175925865774530922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8963033535601650411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31a17d534fd0d040b852619a6d0c188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 1
+    OriginatingState: -1459219776
+    DestinationState: 1080829965
+    TransitionDuration: 0.25
+    TriggerNameHash: 1080829965
+    TransitionIndex: 0
+  m_Animator: {fileID: 3506368696630857548}
 --- !u!114 &1130941789584220573
 MonoBehaviour:
   m_ObjectHideFlags: 0

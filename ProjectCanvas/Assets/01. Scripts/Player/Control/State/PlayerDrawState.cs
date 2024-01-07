@@ -6,7 +6,7 @@ public class PlayerDrawState : PlayerState
 {
     public override void EnterState()
     {
-
+        
     }
 
     public override void ExitState()
@@ -16,6 +16,6 @@ public class PlayerDrawState : PlayerState
 
     public override void UpdateState()
     {
-
+        
     }
 }

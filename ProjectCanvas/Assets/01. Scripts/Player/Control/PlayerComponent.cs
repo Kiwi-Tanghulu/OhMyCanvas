@@ -12,9 +12,5 @@ public class PlayerComponent : NetworkBehaviour
         this.controller = controller;
     }
 
-    public virtual void UpdateCompo()
-    {
-        if (!IsOwner)
-            return;
-    }
+    public virtual void UpdateCompo() { }
 }

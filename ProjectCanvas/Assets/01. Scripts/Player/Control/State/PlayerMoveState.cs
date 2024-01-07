@@ -5,28 +5,52 @@ using UnityEngine.EventSystems;
 
 public class PlayerMoveState : PlayerState
 {
+    private PlayerAnimation anim;
+    private InputReader inputReader;
+    private PlayerMovement movement;
+
+    public override void InitState(PlayerController _controller, PlayerStateType type)
+    {
+        base.InitState(_controller, type);
+
+        anim = controller.Anim;
+        inputReader = controller.InputReader;
+        movement = controller.Movement;
+    }
+
     public override void EnterState()
     {
-        controller.Anim.SetAnimBoolProperty(StateType.ToString(), true);
-        controller.InputReader.LClick_Event += AttackHandle;
+        if (IsOwner)
+        {
+            anim.SetBool(StateType.ToString(), true);
+            inputReader.LClick_Event += AttackHandle;
+        }
     }
 
     public override void ExitState()
     {
-        controller.Movement.SetMoveDir(Vector2.zero);
-        controller.Anim.SetAnimBoolProperty(StateType.ToString(), false);
-        controller.InputReader.LClick_Event -= AttackHandle;
+        if (IsOwner)
+        {
+            movement.SetMoveDir(Vector2.zero);
+            anim.SetBool(StateType.ToString(), false);
+            inputReader.LClick_Event -= AttackHandle;
+        }
     }
+
+        
 
     public override void UpdateState()
     {
-        IdleHandle();
-        controller.Movement.SetMoveDir(controller.InputReader.MoveInputValue);
+        if (IsOwner)
+        {
+            IdleHandle();
+            movement.SetMoveDir(inputReader.MoveInputValue);
+        }
     }
 
     private void IdleHandle()
     {
-        if (controller.InputReader.MoveInputValue == Vector2.zero)
+        if (inputReader.MoveInputValue == Vector2.zero)
             controller.ChangeState(PlayerStateType.Idle);
     }
 

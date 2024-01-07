@@ -15,29 +15,14 @@ public class PlayerAttack : PlayerComponent
 
     public void DoAttack()
     {
-        if (!IsOwner)
+        if (!IsOwner || IsAttack)
             return;
 
-        AttackServerRpc();
-    }
-
-    [ServerRpc]
-    private void AttackServerRpc()
-    {
-        if (IsAttack)
-            return;
-
-        AttackClientRpc();
-    }
-
-    [ClientRpc]
-    private void AttackClientRpc()
-    {
         if (setWeightCo != null)
             controller.Anim.StopCoroutine(setWeightCo);
 
         controller.Anim.SetLayerWeight("Attack Layer", 1);
-        controller.Anim.SetTriggerProperty("Attack");
+        controller.Anim.SetTrigger("Attack");
         IsAttack = true;
     }
 
