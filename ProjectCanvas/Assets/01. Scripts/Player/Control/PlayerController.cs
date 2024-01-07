@@ -109,7 +109,6 @@ public class PlayerController : NetworkBehaviour, IDamageable
 
     public void OnDamaged(int damage = 0, GameObject performer = null, Vector3 point = default)
     {
-        Debug.Log(gameObject.name);
         ChangeStateClientRpc(PlayerStateType.Stun);
     }
 }

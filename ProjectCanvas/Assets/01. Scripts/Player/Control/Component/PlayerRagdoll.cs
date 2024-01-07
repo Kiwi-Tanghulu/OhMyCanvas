@@ -10,7 +10,15 @@ public class PlayerRagdoll : PlayerComponent
 
     public void ActiveRagdoll(bool value)
     {
-        CopyTrm(value);
+        if (value)
+        {
+            CopyTrm(playerObj, ragdollObj);
+        }
+        else
+        {
+            transform.position = effectObj.transform.position;
+        }
+        
         playerObj.gameObject.SetActive(!value);
         ragdollObj.gameObject.SetActive(value);
     }
@@ -18,14 +26,6 @@ public class PlayerRagdoll : PlayerComponent
     public void EffectRagdoll(Vector3 dir, float power)
     {
         effectObj.AddForce(dir * power, ForceMode.Impulse);
-    }
-
-    private void CopyTrm(bool isRagdoll)
-    {
-        if (isRagdoll)
-            CopyTrm(playerObj, ragdollObj);
-        else
-            CopyTrm(ragdollObj, playerObj);
     }
 
     private void CopyTrm(Transform from, Transform to)
