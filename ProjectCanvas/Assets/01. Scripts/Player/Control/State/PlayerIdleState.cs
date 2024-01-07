@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerIdleState : PlayerState
 {
     private PlayerMovement movement;
+    private PlayerAttack atk;
     private InputReader inputReader;
 
     public override void InitState(PlayerController _controller, PlayerStateType type)
@@ -12,6 +13,7 @@ public class PlayerIdleState : PlayerState
         base.InitState(_controller, type);
 
         movement = controller.Movement;
+        atk = controller.Attack;
         inputReader = controller.InputReader;
     }
 
@@ -48,6 +50,7 @@ public class PlayerIdleState : PlayerState
 
     private void AttackHandle()
     {
-        controller.ChangeState(PlayerStateType.Attack);
+        if(!atk.IsAttack)
+            controller.ChangeState(PlayerStateType.Attack);
     }
 }

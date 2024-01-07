@@ -30,9 +30,9 @@ public class PlayerAnimation : PlayerComponent
     {
         anim.SetLayerWeight(anim.GetLayerIndex(layerName), target);
     }
-    public void SetLayerWeight(string layerName, float start, float end, float time = 0)
+    public Coroutine SetLayerWeight(string layerName, float start, float end, float time = 0)
     {
-        StartCoroutine(SetLayerWeightCo(layerName, start, end, time));
+        return StartCoroutine(SetLayerWeightCo(layerName, start, end, time));
     }
 
     private IEnumerator SetLayerWeightCo(string layerName, float start, float end, float time)

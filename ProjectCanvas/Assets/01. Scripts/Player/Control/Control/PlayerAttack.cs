@@ -8,6 +8,7 @@ public class PlayerAttack : PlayerComponent
 {
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float attackOffset = 1f;
+    [SerializeField] private float attackDely = 0.5f;
 
     public bool IsAttack { get; private set; } = false;
 
@@ -28,9 +29,9 @@ public class PlayerAttack : PlayerComponent
 
     public void EndAttack()
     {
-        IsAttack = false;
-        controller.Anim.SetLayerWeight("Attack Layer", 1, 0, 0.2f);
-        controller.ChangeState(PlayerStateType.Move);
+        setWeightCo = controller.Anim.SetLayerWeight("Attack Layer", 1, 0, 0.2f);
+        controller.ChangeState(PlayerStateType.Idle);
+        StartCoroutine(AttackDelay());
     }
 
     public void CheckHit()
@@ -50,6 +51,13 @@ public class PlayerAttack : PlayerComponent
                 hit.OnDamaged();
             }
         }
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(attackDely);
+
+        IsAttack = false;
     }
 
 //#if UNITY_EDITOR

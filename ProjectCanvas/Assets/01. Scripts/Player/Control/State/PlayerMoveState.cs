@@ -6,16 +6,18 @@ using UnityEngine.EventSystems;
 public class PlayerMoveState : PlayerState
 {
     private PlayerAnimation anim;
-    private InputReader inputReader;
     private PlayerMovement movement;
+    private PlayerAttack atk;
+    private InputReader inputReader;
 
     public override void InitState(PlayerController _controller, PlayerStateType type)
     {
         base.InitState(_controller, type);
 
         anim = controller.Anim;
-        inputReader = controller.InputReader;
         movement = controller.Movement;
+        atk = controller.Attack;
+        inputReader = controller.InputReader;
     }
 
     public override void EnterState()
@@ -56,6 +58,7 @@ public class PlayerMoveState : PlayerState
 
     private void AttackHandle()
     {
-        controller.ChangeState(PlayerStateType.Attack);
+        if(!atk.IsAttack)
+            controller.ChangeState(PlayerStateType.Attack);
     }
 }
