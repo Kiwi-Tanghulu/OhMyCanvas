@@ -58,7 +58,7 @@ public class PlayerMoveState : PlayerState
 
     private void AttackHandle()
     {
-        if(!atk.IsAttack)
+        if(atk.CanAttack)
             controller.ChangeState(PlayerStateType.Attack);
     }
 }

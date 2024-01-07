@@ -19,7 +19,7 @@ public class PlayerStunState : PlayerState
     public override void EnterState()
     {
         ragdoll.ActiveRagdoll(true);
-        ragdoll.EffectRagdoll((Vector3.forward + Vector3.up).normalized, 300f);
+        ragdoll.EffectRagdoll((Vector3.forward + Vector3.up).normalized, effectPower);
 
         if (IsOwner)
         {

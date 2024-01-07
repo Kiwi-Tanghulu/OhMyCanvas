@@ -11,12 +11,13 @@ public class PlayerAttack : PlayerComponent
     [SerializeField] private float attackDely = 0.5f;
 
     public bool IsAttack { get; private set; } = false;
+    public bool CanAttack { get; private set; } = true;
 
     private Coroutine setWeightCo;
 
     public void DoAttack()
     {
-        if (!IsOwner || IsAttack)
+        if (!IsOwner  || !CanAttack)
             return;
 
         if (setWeightCo != null)
@@ -25,12 +26,14 @@ public class PlayerAttack : PlayerComponent
         controller.Anim.SetLayerWeight("Attack Layer", 1);
         controller.Anim.SetTrigger("Attack");
         IsAttack = true;
+        CanAttack = false;
     }
 
     public void EndAttack()
     {
         setWeightCo = controller.Anim.SetLayerWeight("Attack Layer", 1, 0, 0.2f);
         controller.ChangeState(PlayerStateType.Idle);
+        IsAttack = false;
         StartCoroutine(AttackDelay());
     }
 
@@ -57,7 +60,7 @@ public class PlayerAttack : PlayerComponent
     {
         yield return new WaitForSeconds(attackDely);
 
-        IsAttack = false;
+        CanAttack = true;
     }
 
 //#if UNITY_EDITOR

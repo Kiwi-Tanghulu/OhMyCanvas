@@ -50,7 +50,7 @@ public class PlayerIdleState : PlayerState
 
     private void AttackHandle()
     {
-        if(!atk.IsAttack)
+        if(atk.CanAttack)
             controller.ChangeState(PlayerStateType.Attack);
     }
 }
